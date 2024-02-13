@@ -31,7 +31,7 @@ List the functionality that your app will include. These can be written as user 
 - Task Management: The app allows users to manage their tasks and to-do lists directly from the dashboard. Users can add, edit, and prioritize tasks, mark them as complete, and set reminders to stay organized and productive throughout the day.
 - Email Integration: user can integrate their email accounts with the app to receive summaries of unread emails directly on the dashboard. The email module provides the number of unread emails and it's better to have a quick overview of new messages.
 - Top News Headlines: The app aggregates top news headlines from reputable sources and displays them on the dashboard. Users can stay updated on the latest developments in various categories including world news, business, technology, and policy.
-- Text-to-Speech (TTS) functionality: The app can integrate a TTS engine that converts the text displayed on the dashboard into spoken audio.
+- Text-to-Speech functionality: The app can integrate a TTS engine that converts the text displayed on the dashboard into spoken audio.
 
 ## Implementation
 
@@ -65,7 +65,12 @@ List the functionality that your app will include. These can be written as user 
 
 ### Sitemap
 
-
+- HomePage
+  - Weather
+  - Tasks
+  - Unread Emails
+  - Top news
+  - TTS
 
 ### Mockups
 
@@ -73,20 +78,68 @@ List the functionality that your app will include. These can be written as user 
 
 ### Data
 
-Describe your data and the relationships between them. You can show this visually using diagrams, or write it out. 
+All Data retrieve from API. In task management, users can import task data from API and create their own task. 
+
+- OpenWeatherMap API (for weather forecasts)
+
+- Task Management API (e.g., Todoist API)
+- Email API (e.g., Gmail API)
+- News API (e.g., New York Times API)
 
 ### Endpoints
 
-List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
+GET /weather:
+
+- Get weather by location
+
+Get /tasks
+
+- Get task data (p)
+
+Get /emails
+
+- Get unread emails by date
+
+Get /news
+
+- Get news in various categories and get the top one news each category
+
+Get /news/category/
+
+- Access the summary of the news in a certain category.
 
 ### Auth
 
-Does your project include any login or user profile functionality? If so, describe how authentication/authorization will be implemented.
+No. 
 
 ## Roadmap
 
-Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation. Think about what you can reasonably complete before the due date. The more detail you provide, the easier it will be to build.
+- Create client
+  - react project with routes
+- Create server
+  - express project with routing
+- Feature: get weather info from a given location
+  - Implement weather component
+  - Create /weather endpoint
+- Feature: Task management
+  - Implement task component
+  - Integrate API
+  - Create own tasks 
+  - create /tasks endpoint
+- Feature: Get unread email
+  - Implement email component
+  - create /emails endpoint
+- Feature: Get top news in various categories
+  - Implement news component
+  - Create /news endpoint
+  - Create /news/category/ endpoint
+- Feature: Read the text on the dashboard. 
+  - Convert the text displayed on the dashboard into spoken audio.
 
 ## Nice-to-haves
 
 - **Adjust Settings:** Users can adjust their settings and preferences at any time to fine-tune their morning routine according to their changing needs and preferences. This flexibility allows users to tailor the app to their unique preferences and lifestyle.
+
+- **Auth**: 
+  - **Login or Signup:** Users will start by logging into their existing account or signing up for a new one if they're new to the app. This step ensures that their preferences and settings are saved for future use.
+  - **Customize Preferences:** Upon logging in, users will have the option to customize their morning routine by selecting which modules they want to include on their dashboard. They can choose from modules such as weather, tasks, unread emails, and top news headlines.
