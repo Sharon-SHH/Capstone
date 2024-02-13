@@ -39,7 +39,6 @@ List the functionality that your app will include. These can be written as user 
 
 - React
 - Express
-- Redux
 - Client libraries:
   - react
   - React-router
@@ -47,12 +46,10 @@ List the functionality that your app will include. These can be written as user 
 - Server libraries:
   - Knex
   - Express
-
 - Frontend: React.js, Redux (for state management), Material-UI (for UI components)
 - Backend: Node.js, Express.js
 - Database: MongoDB (for storing user preferences and settings)
 - Authentication: JWT (JSON Web Tokens) or OAuth 2.0
-- External APIs: 
 - Other Tools: Axios (for API requests), Lodash (for data manipulation), Moment.js (for date/time formatting)
 
 ### APIs
@@ -74,7 +71,7 @@ List the functionality that your app will include. These can be written as user 
 
 ### Mockups
 
-![IMG_1065](./IMG_1065.jpg)
+<img src="./IMG_1065.jpg" alt="IMG_1065" style="zoom:50%;" />
 
 ### Data
 
@@ -82,7 +79,7 @@ All Data retrieve from API. In task management, users can import task data from 
 
 - OpenWeatherMap API (for weather forecasts)
 
-- Task Management API (e.g., Todoist API)
+- Task Management (CRUD database)
 - Email API (e.g., Gmail API)
 - News API (e.g., New York Times API)
 
@@ -121,6 +118,8 @@ No.
 - Feature: get weather info from a given location
   - Implement weather component
   - Create /weather endpoint
+- Feature: Read the text on the dashboard. 
+  - Convert the text displayed on the dashboard into spoken audio.
 - Feature: Task management
   - Implement task component
   - Integrate API
@@ -133,8 +132,6 @@ No.
   - Implement news component
   - Create /news endpoint
   - Create /news/category/ endpoint
-- Feature: Read the text on the dashboard. 
-  - Convert the text displayed on the dashboard into spoken audio.
 
 ## Nice-to-haves
 
