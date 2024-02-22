@@ -1,3 +1,9 @@
-body{
+@use "./partials/typography" as *;
+@use "./partials/reset" as *;
+@use "./partials/variable" as *;
+@use "./partials/mixin" as *;
+
+
+.App {
     background-color: antiquewhite;
 }

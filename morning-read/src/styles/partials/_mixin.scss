@@ -1,0 +1,90 @@
+@use "./variable.scss" as *;
+
+@mixin tablet-and-desk {
+    @media screen and (min-width: $tablet-breakpoint) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: $desktop-breakpoint) {
+        @content;
+    }
+}
+
+@mixin page-header {
+    font-size: $p-24;
+    line-height: $p-32;
+    font-family: "Avenir", Arial, Helvetica, sans-serif;
+
+    @include tablet-and-desk {
+        font-size: $p-33;
+        line-height: $p-44;
+    } 
+}
+
+@mixin section-header {
+    font-size: $p-13;
+    line-height: $p-22;
+    font-family: "Avenir", Arial, Helvetica, sans-serif;
+    font-weight: 700;
+
+    @include tablet-and-desk{
+        font-size: $p-14;
+        line-height: $p-18;
+    }
+}
+
+@mixin sub-header {
+    font-size: $p-12;
+    line-height: $p-20;
+    font-family: "Avenir", Arial, Helvetica, sans-serif;
+    font-weight: 700;
+}
+
+@mixin body-copy {
+    font-size: $p-13;
+    line-height: $p-22;
+    font-family: "Avenir", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    
+    @include tablet-and-desk{
+        font-size: $p-14;
+        line-height: $p-18;
+    }
+}
+
+@mixin lab-btn {
+    font-size: $p-10;
+    line-height: $p-20;
+    font-family: "Avenir", Arial, Helvetica, sans-serif;
+    font-weight: 700;
+
+    @include tablet-and-desk{
+        font-size: $p-12;
+    }
+}
+
+@mixin global-btn {
+    background-color: $blue;
+    color: $white;
+    width: 100%;
+    height: $p-44;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: $p-20;
+    @include lab-btn;
+
+    @include tablet-and-desk {
+        margin: 0 $p-33;
+        width: $btn-width;
+    }
+}
+
+@mixin img_circle {
+    border-radius: $border-radius;
+    height: $circle-height;
+    width: $circle-height;
+    object-fit: cover;
+}

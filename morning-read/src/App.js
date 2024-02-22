@@ -1,10 +1,13 @@
+import Header from './components/Header/Header';
+import News from './components/News/News';
 import './styles/main.scss';
 
 function App() {
   return (
-    <body>
-      <h1>Morning Read App</h1>
-    </body>
+    <div className='App'>
+      <Header />
+      <News />
+    </div>
   );
 }
 

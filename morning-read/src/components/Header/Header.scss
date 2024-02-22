@@ -1,0 +1,6 @@
+@use "../../styles/partials/variable" as *;
+
+.header {
+    width: auto;
+    max-width: $wrapper-max-width;
+}
