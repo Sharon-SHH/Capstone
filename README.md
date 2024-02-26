@@ -67,7 +67,17 @@ List the functionality that your app will include. These can be written as user 
 
 ### Mockups
 
-<img src="./IMG_1065.jpg" alt="IMG_1065" style="zoom:50%;" />
+<img src="./img/weather.jpg" alt="weather" style="zoom:50%;" />
+
+<img src="./img/task.png" alt="weather" style="zoom:50%;" />
+
+<img src="./img/specific_news.png" alt="weather" style="zoom:50%;" />
+
+<img src="./img/news_resources.png" alt="weather" style="zoom:50%;" />
+
+
+
+
 
 ### Data
 
