@@ -1,9 +1,6 @@
-@use "../../styles/partials/variable" as *;
 @use "../../styles/partials/mixin" as *;
 
 .tasks {
-    // margin: 1rem;
-    // max-width: $wrapper-max-width;
     @include card;
 }
 

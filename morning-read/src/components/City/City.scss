@@ -1,0 +1,21 @@
+@use "../../styles/partials/variable" as *;
+@use "../../styles/partials/mixin" as *;
+
+.cityWeather{
+    @include card;
+    &__btn {
+        @include global-btn;
+        &:hover {
+            background-color: $darkblue;
+        }
+    }
+    &__inputCity{
+       display: flex;
+       flex-direction: column;
+       padding-bottom: 1rem;
+       @include tablet-and-desk {
+        flex-direction: row;
+        justify-content: space-between;
+       }
+    }
+}

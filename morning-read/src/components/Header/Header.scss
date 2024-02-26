@@ -1,13 +1,20 @@
 @use "../../styles/partials/variable" as *;
 @use "../../styles/partials/mixin" as *;
 
-// .header {
-//     width: 100%;
-//     &__wrapper {
-//         margin: 1rem;
-//         max-width: $wrapper-max-width;
-//     }
-// }
 h1 {
     @include page-header;
+    color: $white;
+}
+.header{
+    width: 100%;
+    &__wrapper{
+        max-width: $card-m-max-width;
+        margin: 20px auto;
+        @include tablet-and-desk() {
+            max-width: $card-max-width;
+        }
+        @include desktop(){
+            max-width: $wrapper-max-width;
+        }
+    }
 }

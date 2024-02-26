@@ -8,7 +8,6 @@ const ReservedTask = ({ reservedTask }) => {
     const [isDone, setIsDone] = useState(false);
     const handleCheck = async ()=> {
         setIsDone(!isDone);
-        console.log(reservedTask);
         try {
             await axios.put(`${baseUrl}/tasks/${reservedTask.id}`, {
               status: true,

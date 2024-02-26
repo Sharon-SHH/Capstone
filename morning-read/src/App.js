@@ -1,4 +1,4 @@
-// import City from './components/City/City';
+import City from './components/City/City';
 import Header from './components/Header/Header';
 import News from './components/News/News';
 import Tasks from './components/Tasks/Tasks';
@@ -9,8 +9,8 @@ function App() {
     <body className="app">
       <div className="app__wrapper">
         <Header />
+        <City />
         <Tasks />
-        {/* <City /> */}
         <News />
       </div>
     </body>

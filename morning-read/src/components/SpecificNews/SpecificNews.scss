@@ -1,0 +1,8 @@
+@use "../../styles/partials/mixin" as *;
+
+.spNews {
+    @include card;
+}
+a {
+    text-decoration-line: none;
+}

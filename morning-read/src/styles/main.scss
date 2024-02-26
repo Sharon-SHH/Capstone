@@ -5,7 +5,7 @@
 
 
 .app {
-  background-color: $mercury;
+  background-color: $darkblack;
   width: 100%;
   &__wrapper {
       margin: auto;
@@ -20,11 +20,10 @@ input[type="text"]::placeholder {
 }
 
 input[type="datetime-local"] {
-  border: 1px solid $mercury;
-  border-radius: $p-20;
-  color: $labelBlue;
-  padding: $p-5;
-  margin-bottom: 1rem;
+  @include select_dropdown;
+}
+select {
+  @include select_dropdown;
 }
 
 input[type="text"] {
@@ -32,8 +31,11 @@ input[type="text"] {
   border-radius: $p-5;
   color: $labelBlue;
   padding: $p-5;
-  width: 91%;
+  width: 100%;
   margin-bottom: 1rem;
+  @include tablet-and-desk {
+    width: 91%;
+  }
 }
 
 input[type="checkbox"] {

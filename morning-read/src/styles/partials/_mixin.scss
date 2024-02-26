@@ -86,4 +86,15 @@
   @include tablet-and-desk() {
     max-width: $card-max-width;
   }
+  @include desktop(){
+    max-width: $wrapper-max-width;
+  }
+}
+
+@mixin select_dropdown {
+  border: 1px solid $mercury;
+  border-radius: $p-20;
+  color: $labelBlue;
+  padding: $p-5;
+  margin-bottom: 1rem;
 }

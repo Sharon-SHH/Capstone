@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import "./City.scss";
 import Weather from "../Weather/Weather";
 const baseUrl = process.env.REACT_APP_SERVER_URL;
 
@@ -17,23 +18,26 @@ const City = () => {
         e.preventDefault();
         const fetchData = async () => {
             const response = await axios.get(`${baseUrl}/weather/city?search=${searchValue}`);
-            console.log(response.data);
             setCityList(response.data);
             setSelectCity(cityList[0]);
         }
         fetchData();
     }
     return (
-      <div>
+      <div className="cityWeather">
         <h3>Select your city:</h3>
         <form className="city" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={searchValue}
-            onChange={handleSearchChange}
-            placeholder="Enter city"
-          />
-          <button type="submit">Search</button>
+          <div className="cityWeather__inputCity">
+            <input
+              type="text"
+              value={searchValue}
+              onChange={handleSearchChange}
+              placeholder="Enter city"
+            />
+            <button className="cityWeather__btn" type="submit">
+              Search
+            </button>
+          </div>
           {cityList && cityList.length > 0 && (
             <div>
               <select value={selectCity} onChange={handleSelectCity}>
