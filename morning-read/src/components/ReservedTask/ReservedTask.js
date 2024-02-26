@@ -19,7 +19,7 @@ const ReservedTask = ({ reservedTask }) => {
   return (
     <div className="reservedTasks">
       {!isDone && (
-        <>
+        <div className="reservedTasks__card">
           <div className="reservedTasks__wrapper">
             <h4>{reservedTask.title}</h4>
             <input type="checkbox" checked={isDone} onChange={handleCheck} />
@@ -43,7 +43,7 @@ const ReservedTask = ({ reservedTask }) => {
               </span>
             </p>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

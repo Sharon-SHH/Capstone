@@ -2,8 +2,9 @@
 @use "../../styles/partials/mixin" as *;
 
 .reservedTasks{
-    @include card;
-
+    &__card {
+        @include card;
+    }
     &__wrapper {
         display: flex;
         justify-content: space-between;
