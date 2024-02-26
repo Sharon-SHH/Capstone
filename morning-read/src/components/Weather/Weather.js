@@ -3,22 +3,22 @@ import axios from "axios";
 import "./Weather.scss";
 const baseUrl = process.env.REACT_APP_SERVER_URL;
 
-const Weather = ({ selectCity }) => {
-    const [weather, setWeather] = useState({});
-    
-    useEffect(()=> {
-        const fetchData = async () => {
-          const encodedCity = encodeURIComponent(selectCity)
-          const response = await axios.get(
-            `${baseUrl}/weather?search=${encodedCity}`
-          );
-          console.log(response.data);
-          setWeather(response.data);
-        };
-        if (selectCity) {
-          fetchData();
-        }
-    }, [selectCity])
+const Weather = ({ selectCity}) => {
+  const [weather, setWeather] = useState({});
+
+  const fetchData = async (param_city) => {
+    const encodedCity = encodeURIComponent(param_city);
+    const response = await axios.get(
+      `${baseUrl}/weather?search=${encodedCity}`
+    );
+    setWeather(response.data);
+  }
+
+  useEffect(() => {
+    if (selectCity) {
+      fetchData(selectCity);
+    }
+  }, [selectCity]);
   return (
     <div className="weather">
       {weather && weather.weather ? (

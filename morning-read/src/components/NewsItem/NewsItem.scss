@@ -1,0 +1,16 @@
+@use "../../styles/partials/variable" as *;
+@use "../../styles/partials/mixin" as *;
+
+.newsTag {
+  display: inline-block;
+  padding: 0 .5rem;
+  border-radius: 4px;
+  background-color: $mercury;
+  color: $labelBlue;
+  margin-left: 2rem;
+  @include lab-btn;
+}
+
+a {
+    @include body-copy;
+}

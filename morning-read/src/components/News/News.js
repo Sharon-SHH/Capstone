@@ -2,66 +2,77 @@ import { useEffect, useState } from "react";
 import "./News.scss";
 import axios from "axios";
 import NewsItem from "../NewsItem/NewsItem";
-import newsData from "../../data/data.json";
 import SpecificNews from "../SpecificNews/SpecificNews";
 
 const baseUrl = process.env.REACT_APP_SERVER_URL;
 
 const News = ()=> {
-  const [checkboxes, setCheckboxes] = useState({
-    business: false,
-    general: false,
-    technology: false,
-    science: false,
-  });
-  const [checkedNames, setCheckedNames] = useState("");
   const [newsList, setNewsList] = useState([]);
   const [specificNewsList, setSpecificNewsList] = useState([]);
-  const handleCheckboxChange = (checkboxName) => {
-    setCheckboxes((prevCheckboxes) => ({
-      ...prevCheckboxes,
-      [checkboxName]: !prevCheckboxes[checkboxName],
-    }));
-  };
-  // console.log("click1", checkboxName);
-  // setCheckboxes({...checkboxes, [checkboxName]:!checkboxes[checkboxName]});
-  // console.log("click2", checkboxes);
-  useEffect(() => {
-    setCheckedNames(
-      Object.keys(checkboxes)
-        .filter((key) => checkboxes[key])
-        .join(",")
-    );
-    console.log(checkedNames);
-    const fetchData = async () => {
-      //   const response = await axios.get(`${baseUrl}/news/${checkedNames}`);
-      //   const response = await axios.get(`${baseUrl}/news`);
+  const [selectedOption, setSelectedOption] = useState("all");
 
-    //   const newsList = response.data?.articles?.results;
-      //   setNewsList(response.data);
-      const newsList = newsData;
-    //   console.log(response);
-      const uniqueNames = [...new Set(newsList.map((item) => item.source.uri))];
-      console.log(uniqueNames);
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
+
+  useEffect(() => {
+    // Function to remove duplicated objects based on specific attributes
+    const removeDuplicates = (list) => {
+      const seen = new Set();
+      return list.filter((obj) => {
+        const keyA = obj.titel;
+        const keyB = obj.source && obj.source.uri; // Access nested attribute B.title
+        const keyC = obj.sentiment;
+        const compositeKey = `${keyA}|${keyB}&${keyC}`;
+        if (seen.has(compositeKey)) {
+          return false; // Skip this object if it's a duplicate
+        } else {
+          seen.add(compositeKey);
+          return true; // Keep this object if it's not a duplicate
+        }
+      });
     };
-    // const tmp = newsData.filter((item) => item.sentiment > 0.2);
-    // console.log("tmp:", tmp);
-    // sort 
-    const tmp = newsData.sort((firstItem, secondItem) => secondItem.sentiment - firstItem.sentiment);
-    setSpecificNewsList(tmp.filter((item) => item.sentiment > 0.5));
+
+    const fetchData = async () => {
+      const response = await axios.get(`${baseUrl}/news`);
+      const tmpList = response.data?.articles?.results;
+      // get specific news: filter related news, remove duplicated news
+      const filterList = tmpList.filter(
+        (item, index, self) =>
+          item.sentiment > 0.5 &&
+          index === self.findIndex((t) => t.title === item.title)
+      );
+
+      const resultList =
+        filterList &&
+        filterList.sort(
+          (firstItem, secondItem) => secondItem.sentiment - firstItem.sentiment
+        );
+
+      setSpecificNewsList(resultList);
+    };
 
     fetchData();
   }, []);
+  useEffect(()=> {
+     const fetchData = async () => {
+       // Get news List
+       if (selectedOption === "all") {
+         const responseN = await axios.get(`${baseUrl}/news/all/`);
+         setNewsList(responseN.data);
+       } else {
+         const responseN = await axios.get(
+           `${baseUrl}/news/all/${selectedOption}`
+         );
+         setNewsList(responseN.data);
+       }
+     };
+     fetchData();
+  }, [selectedOption])
   const handleSubmit = (e) => {
     e.preventDefault();
-    const fetchData = async () => {
-    //   const response = await axios.get(`${baseUrl}/news`);
-      const response = newsData;
-      console.log(response);
-      setNewsList(response);
-    };
-    fetchData();
   };
+   
 
   return (
     <form className="news" onSubmit={handleSubmit}>
@@ -76,56 +87,85 @@ const News = ()=> {
               />
             ))
           ) : (
-            <p>No news - Specific</p>
+            <p>Loading ...</p>
           )}
         </div>
       </section>
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            name="business"
-            checked={checkboxes.business}
-            onChange={() => handleCheckboxChange("business")}
-          />
-          business
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            name="general"
-            checked={checkboxes.general}
-            onChange={() => handleCheckboxChange("general")}
-          />
-          general
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            name="technology"
-            checked={checkboxes.technology}
-            onChange={() => handleCheckboxChange("technology")}
-          />
-          technology
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            name="science"
-            checked={checkboxes.science}
-            onChange={() => handleCheckboxChange("science")}
-          />
-          science
-        </label>
-      </div>
-      <div>
-        {/* <button type="submit">OK</button> */}
-        {newsList && newsList.length > 0 ? (
-          newsList.map((item, index) => <NewsItem key={index} item={item} />)
-        ) : (
-          <p>No news</p>
-        )}
-      </div>
+      <section className="newsResources">
+        <h3>News Resources:</h3>
+        <div>
+          <label>
+            <input
+              type="radio"
+              id="all"
+              name="options"
+              value="all"
+              checked={selectedOption === "all"}
+              onChange={handleOptionChange}
+            />
+            All
+          </label>
+          <label>
+            <input
+              type="radio"
+              id="business"
+              name="options"
+              value="business"
+              checked={selectedOption === "business"}
+              onChange={handleOptionChange}
+            />
+            business
+          </label>
+          <label>
+            <input
+              type="radio"
+              id="general"
+              name="options"
+              value="general"
+              checked={selectedOption === "general"}
+              onChange={handleOptionChange}
+            />
+            general
+          </label>
+          <label>
+            <input
+              type="radio"
+              id="technology"
+              name="options"
+              value="technology"
+              checked={selectedOption === "technology"}
+              onChange={handleOptionChange}
+            />
+            technology
+          </label>
+          <label>
+            <input
+              type="radio"
+              id="science"
+              name="options"
+              value="science"
+              checked={selectedOption === "science"}
+              onChange={handleOptionChange}
+            />
+            science
+          </label>
+        </div>
+        <div>
+          <ul>
+            {newsList && newsList.length > 0 ? (
+              newsList.map((item, index) => (
+                <li key={index}>
+                  <NewsItem item={item} />
+                </li>
+              ))
+            ) : (
+              <li>
+                <p>No news</p>
+              </li>
+            )}
+          </ul>
+        </div>
+      </section>
     </form>
   );
 }

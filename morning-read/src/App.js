@@ -6,14 +6,14 @@ import './styles/main.scss';
 
 function App() {
   return (
-    <body className="app">
+    <div className="app">
       <div className="app__wrapper">
         <Header />
         <City />
         <Tasks />
         <News />
       </div>
-    </body>
+    </div>
   );
 }
 

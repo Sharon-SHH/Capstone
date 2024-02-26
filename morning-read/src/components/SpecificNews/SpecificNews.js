@@ -7,7 +7,7 @@ const SpecificNews = ({specificItem}) => {
           <a href={specificItem.url}>{specificItem.title}</a>
         </h4>{" from "}
         <span className="details">
-          {specificItem?.source?.uri} & {specificItem.sentiment}
+          {specificItem?.source?.uri}
         </span>
         <p>{specificItem.body}</p>
       </div>

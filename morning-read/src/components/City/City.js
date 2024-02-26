@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import "./City.scss";
 import Weather from "../Weather/Weather";
@@ -7,20 +7,23 @@ const baseUrl = process.env.REACT_APP_SERVER_URL;
 const City = () => {
     const [searchValue, setSearchValue] = useState("");
     const [cityList, setCityList] = useState([]);
-    const [selectCity, setSelectCity] = useState("");
+    const [selectCity, setSelectCity] = useState("Toronto,ca");
     const handleSearchChange = (e) => {
         setSearchValue(e.target.value);
     }
     const handleSelectCity = (e) => {
         setSelectCity(e.target.value);
     }
+    const fetchData = async () => {
+      const response = await axios.get(
+        `${baseUrl}/weather/city?search=${searchValue}`
+      );
+      setCityList(response.data);
+      setSelectCity(cityList[0]);
+    };
+    
     const handleSubmit = (e) => {
         e.preventDefault();
-        const fetchData = async () => {
-            const response = await axios.get(`${baseUrl}/weather/city?search=${searchValue}`);
-            setCityList(response.data);
-            setSelectCity(cityList[0]);
-        }
         fetchData();
     }
     return (
