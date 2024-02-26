@@ -1,0 +1,24 @@
+@use "../../styles/partials/variable" as *;
+@use "../../styles/partials/mixin" as *;
+
+.reservedTasks{
+    @include card;
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        @include tablet-and-desk {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+}
+
+.details {
+    color: $labelBlue;
+}

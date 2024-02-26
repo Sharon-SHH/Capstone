@@ -1,9 +1,12 @@
+import "./Header.scss";
+
 const Header = ()=> {
     return (
-        <div className="header">
-            <h1>Morning Read App</h1>
-            {/* <h3>{new Date()}</h3> */}
+      <header className="header">
+        <div className="header__wrapper">
+          <h1>Morning Read App</h1>
         </div>
+      </header>
     );
 }
 

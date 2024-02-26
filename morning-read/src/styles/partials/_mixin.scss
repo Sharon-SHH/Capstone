@@ -1,4 +1,5 @@
 @use "./variable.scss" as *;
+@use "./typography" as *;
 
 @mixin tablet-and-desk {
     @media screen and (min-width: $tablet-breakpoint) {
@@ -24,23 +25,17 @@
 }
 
 @mixin section-header {
-    font-size: $p-13;
+    font-size: $p-16;
     line-height: $p-22;
     font-family: "Avenir", Arial, Helvetica, sans-serif;
     font-weight: 700;
 
     @include tablet-and-desk{
-        font-size: $p-14;
+        font-size: $p-20;
         line-height: $p-18;
     }
 }
 
-@mixin sub-header {
-    font-size: $p-12;
-    line-height: $p-20;
-    font-family: "Avenir", Arial, Helvetica, sans-serif;
-    font-weight: 700;
-}
 
 @mixin body-copy {
     font-size: $p-13;
@@ -49,7 +44,7 @@
     font-weight: 400;
     
     @include tablet-and-desk{
-        font-size: $p-14;
+        font-size: $p-15;
         line-height: $p-18;
     }
 }
@@ -73,18 +68,22 @@
     border: none;
     border-radius: 5px;
     text-align: center;
-    margin-top: $p-20;
     @include lab-btn;
 
     @include tablet-and-desk {
         margin: 0 $p-33;
-        width: $btn-width;
+        width: 30%;
     }
 }
 
-@mixin img_circle {
-    border-radius: $border-radius;
-    height: $circle-height;
-    width: $circle-height;
-    object-fit: cover;
+@mixin card {
+  background-color: $card_grey;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  padding: 20px;
+  max-width: $card-m-max-width;
+  margin: 20px auto; /* Center horizontally */
+  @include tablet-and-desk() {
+    max-width: $card-max-width;
+  }
 }

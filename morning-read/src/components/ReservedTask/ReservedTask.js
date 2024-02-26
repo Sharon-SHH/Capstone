@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
+import "./ReservedTask.scss";
 import { HumanReadableDate, computeDaysPassed } from "../../commonFun/utils"; 
 
 const baseUrl = process.env.REACT_APP_SERVER_URL;
@@ -17,19 +18,32 @@ const ReservedTask = ({ reservedTask }) => {
         }
     }
   return (
-    <div>
+    <div className="reservedTasks">
       {!isDone && (
         <>
-          <h3>{reservedTask.title}</h3>
-          <input type="checkbox" checked={isDone} onChange={handleCheck} />
+          <div className="reservedTasks__wrapper">
+            <h4>{reservedTask.title}</h4>
+            <input type="checkbox" checked={isDone} onChange={handleCheck} />
+          </div>
           <p>{reservedTask.note}</p>
-          <p>
-            Ongoing day(s):{" "}
-            {computeDaysPassed(reservedTask.start_date) >= 0
-              ? computeDaysPassed(reservedTask.start_date)
-              : `coming in ${-computeDaysPassed(reservedTask.start_date)} days`}
-          </p>
-          <p>Deadline: {HumanReadableDate(reservedTask.end_date)}</p>
+          <div className="reservedTasks__content">
+            <p>
+              Ongoing day(s):{" "}
+              <span className="details">
+                {computeDaysPassed(reservedTask.start_date) >= 0
+                  ? computeDaysPassed(reservedTask.start_date)
+                  : `coming in ${-computeDaysPassed(
+                      reservedTask.start_date
+                    )} days`}
+              </span>
+            </p>
+            <p>
+              Deadline:{" "}
+              <span className="details">
+                {HumanReadableDate(reservedTask.end_date)}
+              </span>
+            </p>
+          </div>
         </>
       )}
     </div>

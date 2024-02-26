@@ -6,12 +6,14 @@ import './styles/main.scss';
 
 function App() {
   return (
-    <div className='App'>
-      <Header />
-      <Tasks />
-      {/* <City /> */}
-      <News />
-    </div>
+    <body className="app">
+      <div className="app__wrapper">
+        <Header />
+        <Tasks />
+        {/* <City /> */}
+        <News />
+      </div>
+    </body>
   );
 }
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import {isValidateTask} from "../../commonFun/utils";
+import "./InputTask.scss";
 const baseUrl = process.env.REACT_APP_SERVER_URL;
 
 const InputTask = ({ onSubmit }) => {
@@ -45,7 +46,7 @@ const InputTask = ({ onSubmit }) => {
   };
 
   return (
-    <div>
+    <div className="inputTask">
       <h3>New Event</h3>
       <form onSubmit={handleSubmit}>
         <div>
@@ -55,37 +56,48 @@ const InputTask = ({ onSubmit }) => {
           <input
             type="text"
             name="title"
+            placeholder="Enter title"
             value={formData.title}
             onChange={handleChange}
           />
         </div>
         <div>
           <label htmlFor="note">Note:</label>
-          <textarea name="note" value={formData.note} onChange={handleChange} />
-        </div>
-        <div>
-          <label htmlFor="startDate">
-            Start Date<span>*</span>:
-          </label>
           <input
-            type="datetime-local"
-            name="startDate"
-            value={formData.startDate}
+            type="text"
+            name="note"
+            value={formData.note}
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label htmlFor="deadline">
-            Deadline<span>*</span>:
-          </label>
-          <input
-            type="datetime-local"
-            name="deadline"
-            value={formData.deadline}
-            onChange={handleChange}
-          />
+        <div className="inputTask__wrapper">
+          <div className="inputTask__left">
+            <div>
+              <label htmlFor="startDate">
+                Start Date<span>*</span>:
+              </label>
+              <input
+                type="datetime-local"
+                name="startDate"
+                value={formData.startDate}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="inputTask__left">
+              <label htmlFor="deadline">
+                Deadline<span>*</span>:
+              </label>
+              <input
+                type="datetime-local"
+                name="deadline"
+                value={formData.deadline}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <button className="inputTask__btn" type="submit">Submit</button>
         </div>
-        <button type="submit">Submit</button>
       </form>
     </div>
   );

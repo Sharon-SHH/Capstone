@@ -1,0 +1,27 @@
+@use "../../styles/partials/variable" as *;
+@use "../../styles/partials/mixin" as *;
+
+
+.inputTask {
+    padding-bottom: 1rem;
+    border-bottom: 2px solid $silver;
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @include tablet-and-desk {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+ 
+    &__btn {
+        @include global-btn;
+        &:hover {
+            background-color: $darkblue;
+        }
+    }
+
+}

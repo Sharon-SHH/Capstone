@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import InputTask from "../InputTask/InputTask";
 import axios from "axios";
+import "./Tasks.scss";
+import InputTask from "../InputTask/InputTask";
 import ReservedTask from "../ReservedTask/ReservedTask";
 
 const baseUrl = process.env.REACT_APP_SERVER_URL;
@@ -39,11 +40,13 @@ const Tasks = () => {
     fetchData();
   }, [showAllTasks]);
   return (
-    <div>
+    <div className="tasks">
       <InputTask onSubmit={fetchData} />
+      <h3>Today's Reserved Tasks</h3>
       <label>
         <input
           type="checkbox"
+          className="tasks__check"
           checked={showAllTasks}
           onChange={handleCheckboxChange}
         />

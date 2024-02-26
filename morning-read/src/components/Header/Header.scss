@@ -1,6 +1,13 @@
 @use "../../styles/partials/variable" as *;
+@use "../../styles/partials/mixin" as *;
 
-.header {
-    width: auto;
-    max-width: $wrapper-max-width;
+// .header {
+//     width: 100%;
+//     &__wrapper {
+//         margin: 1rem;
+//         max-width: $wrapper-max-width;
+//     }
+// }
+h1 {
+    @include page-header;
 }
