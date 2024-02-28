@@ -11,7 +11,7 @@ function App() {
         <Header />
         <City />
         <Tasks />
-        {/* <News /> */}
+        <News />
       </div>
     </div>
   );
