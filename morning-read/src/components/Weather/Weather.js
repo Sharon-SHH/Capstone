@@ -4,7 +4,6 @@ import "./Weather.scss";
 const baseUrl = process.env.REACT_APP_SERVER_URL;
 
 const Weather = ({ selectCity }) => {
-  console.log(selectCity);
   const [weather, setWeather] = useState({});
   const [error, setError] = useState(null);
 
@@ -14,11 +13,9 @@ const Weather = ({ selectCity }) => {
       const response = await axios.get(
         `${baseUrl}/weather?search=${encodedCity}`
       );
-      console.log("test data");
       setWeather(response.data);
       setError(null);
     } catch (error) {
-      console.log("test server error");
       setError(error); 
       console.error(error);
     }
