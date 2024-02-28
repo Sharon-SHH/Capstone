@@ -6,24 +6,32 @@ const baseUrl = process.env.REACT_APP_SERVER_URL;
 const Weather = ({ selectCity }) => {
   console.log(selectCity);
   const [weather, setWeather] = useState({});
+  const [error, setError] = useState(null);
 
   const fetchData = async (param_city) => {
-    const encodedCity = encodeURIComponent(param_city);
-    const response = await axios.get(
-      `${baseUrl}/weather?search=${encodedCity}`
-    );
-    console.log(response.data);
-    setWeather(response.data);
-  }
+    try {
+      const encodedCity = encodeURIComponent(param_city);
+      const response = await axios.get(
+        `${baseUrl}/weather?search=${encodedCity}`
+      );
+      console.log("test data");
+      setWeather(response.data);
+      setError(null);
+    } catch (error) {
+      console.log("test server error");
+      setError(error); 
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    if (selectCity) {
-      fetchData(selectCity);
-    }
+    fetchData(selectCity);
   }, [selectCity]);
+
   return (
     <div className="weather">
-      {weather && weather.weather ? (
+      {error ? (<div>Error: {error}</div>): 
+      weather && weather.weather ? (
         <div>
           <h3>
             Today's weather:{" "}
