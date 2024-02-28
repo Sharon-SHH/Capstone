@@ -15,11 +15,16 @@ const City = () => {
         setSelectCity(e.target.value);
     }
     const fetchData = async () => {
-      const response = await axios.get(
-        `${baseUrl}/weather/city?search=${searchValue}`
-      );
-      setCityList(response.data);
-      setSelectCity(cityList[0]);
+      try {
+        const response = await axios.get(
+          `${baseUrl}/weather/city?search=${searchValue}`
+        );
+        setCityList(response.data);
+        setSelectCity(response.data[0]);
+      } catch (error) {
+        console.log(`City: ${error}`);
+      }
+      
     };
     
     const handleSubmit = (e) => {

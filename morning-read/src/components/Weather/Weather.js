@@ -3,7 +3,8 @@ import axios from "axios";
 import "./Weather.scss";
 const baseUrl = process.env.REACT_APP_SERVER_URL;
 
-const Weather = ({ selectCity}) => {
+const Weather = ({ selectCity }) => {
+  console.log(selectCity);
   const [weather, setWeather] = useState({});
 
   const fetchData = async (param_city) => {
@@ -11,6 +12,7 @@ const Weather = ({ selectCity}) => {
     const response = await axios.get(
       `${baseUrl}/weather?search=${encodedCity}`
     );
+    console.log(response.data);
     setWeather(response.data);
   }
 

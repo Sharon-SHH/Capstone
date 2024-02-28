@@ -16,6 +16,15 @@ const ReservedTask = ({ reservedTask }) => {
             console.log(`Error: ${error}`);
         }
     }
+    const currentDate = new Date();
+    const endDate = new Date(reservedTask.end_date);
+    let color = "#272794";
+    if (endDate < currentDate) {
+      color = "red";
+    }
+    const style = {
+      color: color,
+    };
   return (
     <div className="reservedTasks">
       {!isDone && (
@@ -38,7 +47,7 @@ const ReservedTask = ({ reservedTask }) => {
             </p>
             <p>
               Deadline:{" "}
-              <span className="details">
+              <span style={style}>
                 {HumanReadableDate(reservedTask.end_date)}
               </span>
             </p>

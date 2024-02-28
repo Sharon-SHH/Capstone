@@ -2,8 +2,9 @@
 const HumanReadableDate = (timestamp) => {
   const date = new Date(timestamp);
   // Format the date as desired (e.g "MM dd, yyyy HH:mm:ss")
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const formattedDate = date.toLocaleString("en-US", {
-    timeZone: "UTC", // Set the timezone if needed
+    timeZone: timezone, // Set the timezone if needed
     // You can customize the format as per your requirement
     year: "numeric",
     month: "short",
