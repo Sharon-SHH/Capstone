@@ -5,7 +5,7 @@ const baseUrl = process.env.REACT_APP_SERVER_URL;
 
 const Weather = ({ selectCity }) => {
   const [weather, setWeather] = useState({});
-  const [error, setError] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const fetchData = async (param_city) => {
     try {
@@ -14,10 +14,10 @@ const Weather = ({ selectCity }) => {
         `${baseUrl}/weather?search=${encodedCity}`
       );
       setWeather(response.data);
-      setError(null);
+      setErrorMessage(null);
     } catch (error) {
-      setError(error); 
-      console.error(error);
+      setErrorMessage(error.error); 
+      console.error(error.error);
     }
   };
 
@@ -27,8 +27,9 @@ const Weather = ({ selectCity }) => {
 
   return (
     <div className="weather">
-      {error ? (<div>Error: {error}</div>): 
-      weather && weather.weather ? (
+      {errorMessage ? (
+        <div>Error: no available data</div>
+      ) : weather && weather.weather ? (
         <div>
           <h3>
             Today's weather:{" "}
