@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./News.scss";
 import axios from "axios";
+import newsIcon from "../../assets/images/Icons/news-64.png";
 import NewsItem from "../NewsItem/NewsItem";
 import SpecificNews from "../SpecificNews/SpecificNews";
 
@@ -59,7 +60,10 @@ const News = ()=> {
 
   return (
     <form className="news" onSubmit={handleSubmit}>
-      <h3>Today's News:</h3>
+      <h3>
+        Today's News:{" "}
+        <img className="news__icon" src={newsIcon} alt="taskIcon" />
+      </h3>
       <section className="specific">
         <div className="specific__wrapper">
           {specificNewsList && specificNewsList.length > 0 ? (

@@ -2,6 +2,15 @@
 
 .news {
     @include card;
+
+    &__icon {
+        height: 2rem;
+        vertical-align: middle;
+
+        @include tablet-and-desk{
+            height: 2.5rem;
+        }
+    }
 }
 li {
     padding-bottom: .5rem;

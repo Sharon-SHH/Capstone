@@ -45,7 +45,7 @@
     
     @include tablet-and-desk{
         font-size: $p-16;
-        line-height: $p-18;
+        line-height: $p-20;
     }
 }
 
@@ -57,6 +57,7 @@
 
     @include tablet-and-desk{
         font-size: $p-12;
+        line-height: $p-24;
     }
 }
 
