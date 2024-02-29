@@ -1,7 +1,25 @@
+@use "../../styles/partials/variable" as *;
 @use "../../styles/partials/mixin" as *;
 
 .tasks {
     @include card;
+    &__task {
+        border-bottom: 2px solid $silver;
+        margin-bottom: 1rem;
+    }
+    &__inputTask {
+        height: 2rem;
+        vertical-align: middle;
+        
+        &:hover {
+            cursor: pointer;
+            background: linear-gradient(to right, #ff339c, #c5ff33);;
+        }
+
+        @include tablet-and-desk {
+            height: 2.5rem;
+        }
+    }
 }
 
 

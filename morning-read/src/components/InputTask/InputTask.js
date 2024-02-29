@@ -46,60 +46,59 @@ const InputTask = ({ onSubmit }) => {
   };
 
   return (
-    <div className="inputTask">
-      <h3>New Event</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">
-            Title<span>*</span>:
-          </label>
-          <input
-            type="text"
-            name="title"
-            placeholder="Enter title"
-            value={formData.title}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="note">Note:</label>
-          <input
-            type="text"
-            name="note"
-            value={formData.note}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="inputTask__wrapper">
-          <div className="inputTask__left">
-            <div>
-              <label htmlFor="startDate">
-                Start Date<span>*</span>:
-              </label>
-              <input
-                type="datetime-local"
-                name="startDate"
-                value={formData.startDate}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="inputTask__left">
-              <label htmlFor="deadline">
-                Deadline<span>*</span>:
-              </label>
-              <input
-                type="datetime-local"
-                name="deadline"
-                value={formData.deadline}
-                onChange={handleChange}
-              />
-            </div>
+    <form className="inputTask" onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="title">
+          Title<span>*</span>:
+        </label>
+        <input
+          type="text"
+          name="title"
+          placeholder="Enter title"
+          value={formData.title}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="note">Note:</label>
+        <input
+          type="text"
+          name="note"
+          value={formData.note}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="inputTask__wrapper">
+        <div className="inputTask__left">
+          <div>
+            <label htmlFor="startDate">
+              Start Date<span>*</span>:
+            </label>
+            <input
+              type="datetime-local"
+              name="startDate"
+              value={formData.startDate}
+              onChange={handleChange}
+            />
           </div>
-          <button className="inputTask__btn" type="submit">Submit</button>
+
+          <div className="inputTask__left">
+            <label htmlFor="deadline">
+              Deadline<span>*</span>:
+            </label>
+            <input
+              type="datetime-local"
+              name="deadline"
+              value={formData.deadline}
+              onChange={handleChange}
+            />
+          </div>
         </div>
-      </form>
-    </div>
+        <button className="inputTask__btn" type="submit">
+          Submit
+        </button>
+      </div>
+    </form>
   );
 };
 

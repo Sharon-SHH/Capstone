@@ -1,7 +1,33 @@
+@use "../../styles/partials/variable" as *;
 @use "../../styles/partials/mixin" as *;
 
 .spNews {
     @include card;
+    &__wrapper {
+        display: flex;
+        justify-content: flex-end;
+    }
+    &__more {
+        width: $p-20; /* Adjust size as needed */
+        height: $p-20; /* Adjust size as needed */
+        border-radius: 50%; /* Makes the button circular */
+        border: none;
+        background-color: #007bff; /* Button background color */
+        color: white; /* Button text color */
+        font-size: 20px; /* Adjust font size as needed */
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        &:hover {
+            background-color: #0056b3;
+        }
+        @include tablet-and-desk {
+            width: $p-36;
+            height: $p-36;
+        }
+    }
 }
 a {
     text-decoration-line: none;

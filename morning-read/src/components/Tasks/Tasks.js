@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Tasks.scss";
+import taskIcon from "../../assets/images/Icons/task-icon.png";
 import InputTask from "../InputTask/InputTask";
 import ReservedTask from "../ReservedTask/ReservedTask";
 
@@ -8,6 +9,11 @@ const baseUrl = process.env.REACT_APP_SERVER_URL;
 const Tasks = () => {
   const [taskList, setTaskList] = useState([]);
   const [showAllTasks, setShowAllTasks] = useState(false);
+  const [showInputItem, setShowInputItem] = useState(false);
+
+  const handleAddEventClick = () => {
+    setShowInputItem(!showInputItem);
+  };
 
   const fetchData = async () => {
     try {
@@ -28,6 +34,7 @@ const Tasks = () => {
             start_date.getDate() === today.getDate()) || (!task.status && (start_date < today)));
       })
       setTaskList(currentDayTasks);
+      setShowInputItem(false); 
     } catch (error) {
       console.log(`Error: ${error}`);
     }
@@ -41,7 +48,19 @@ const Tasks = () => {
   }, [showAllTasks]);
   return (
     <div className="tasks">
-      <InputTask onSubmit={fetchData} />
+      <div className="tasks__task">
+        <h3>
+          Add New Task{" "}
+          <img
+            className="tasks__inputTask"
+            src={taskIcon}
+            alt="taskIcon"
+            onClick={handleAddEventClick}
+          />
+        </h3>
+      </div>
+      {showInputItem && <InputTask onSubmit={fetchData} />}
+
       <h3>Today's Reserved Tasks</h3>
       <label>
         <input

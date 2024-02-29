@@ -16,23 +16,6 @@ const News = ()=> {
   };
 
   useEffect(() => {
-    // Function to remove duplicated objects based on specific attributes
-    const removeDuplicates = (list) => {
-      const seen = new Set();
-      return list.filter((obj) => {
-        const keyA = obj.titel;
-        const keyB = obj.source && obj.source.uri; // Access nested attribute B.title
-        const keyC = obj.sentiment;
-        const compositeKey = `${keyA}|${keyB}&${keyC}`;
-        if (seen.has(compositeKey)) {
-          return false; // Skip this object if it's a duplicate
-        } else {
-          seen.add(compositeKey);
-          return true; // Keep this object if it's not a duplicate
-        }
-      });
-    };
-
     const fetchData = async () => {
       const response = await axios.get(`${baseUrl}/news`);
       const tmpList = response.data?.articles?.results;

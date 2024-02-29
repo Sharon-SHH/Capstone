@@ -5,33 +5,47 @@ import { HumanReadableDate, computeDaysPassed } from "../../commonFun/utils";
 
 const baseUrl = process.env.REACT_APP_SERVER_URL;
 const ReservedTask = ({ reservedTask }) => {
-    const [isDone, setIsDone] = useState(false);
-    const handleCheck = async ()=> {
-        setIsDone(!isDone);
-        try {
-            await axios.put(`${baseUrl}/tasks/${reservedTask.id}`, {
-              status: true,
-            });
-        } catch (error) {
-            console.log(`Error: ${error}`);
-        }
-    }
-    const currentDate = new Date();
-    const endDate = new Date(reservedTask.end_date);
-    let color = "#272794";
-    if (endDate < currentDate) {
-      color = "red";
-    }
-    const style = {
-      color: color,
-    };
+  const [isDone, setIsDone] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  
+  const handleCheck = async ()=> {
+      setIsDone(!isDone);
+      try {
+          await axios.put(`${baseUrl}/tasks/${reservedTask.id}`, {
+            status: true,
+          });
+      } catch (error) {
+          console.log(`Error: ${error}`);
+      }
+  }
+  const currentDate = new Date();
+  const endDate = new Date(reservedTask.end_date);
+  let color = "#272794";
+  if (endDate < currentDate) {
+    color = "red";
+  }
+  const style = {
+    color: color,
+  };
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
   return (
     <div className="reservedTasks">
       {!isDone && (
         <div className="reservedTasks__card">
           <div className="reservedTasks__wrapper">
             <h4>{reservedTask.title}</h4>
-            <input type="checkbox" checked={isDone} onChange={handleCheck} />
+            <label className="reservedTasks__done">
+              <input type="checkbox" checked={isDone} onChange={handleCheck} />
+              <span className="hovered" onClick={handleCheck}>
+                Done
+              </span>
+            </label>
           </div>
           <p>{reservedTask.note}</p>
           <div className="reservedTasks__content">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./City.scss";
 import Weather from "../Weather/Weather";
+import weatherIcon from "../../assets/images/Icons/weather.svg";
 const baseUrl = process.env.REACT_APP_SERVER_URL;
 
 const City = () => {
@@ -32,7 +33,15 @@ const City = () => {
   };
   return (
     <div className="cityWeather">
-      <h3>Select your city:</h3>
+      <h3>
+        Display Weather for a Specified City{" "}
+        <img
+          className="cityWeather__Icon"
+          src={weatherIcon}
+          alt="WeatherIcon"
+        />
+      </h3>
+
       <form className="city" onSubmit={handleSubmit}>
         <div className="cityWeather__inputCity">
           <input
