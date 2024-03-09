@@ -21,7 +21,7 @@ const SpecificNews = ({specificItem}) => {
       <div className="spNews__wrapper">
         {!showAll && specificItem.body.length > 100 && (
           <button className="spNews__more" onClick={handleReadMore}>
-            +
+            {">"}
           </button>
         )}
       </div>

@@ -57,7 +57,7 @@ const Weather = ({ selectCity }) => {
           </div>
         </div>
       ) : (
-        <p>No data</p>
+        <p>Loading</p>
       )}
     </div>
   );

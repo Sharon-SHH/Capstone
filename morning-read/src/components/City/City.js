@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import "./City.scss";
 import Weather from "../Weather/Weather";
@@ -8,7 +8,7 @@ const baseUrl = process.env.REACT_APP_SERVER_URL;
 const City = () => {
   const [searchValue, setSearchValue] = useState("");
   const [cityList, setCityList] = useState([]);
-  const [selectCity, setSelectCity] = useState("Toronto,ca");
+  const [selectCity, setSelectCity] = useState("");
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };

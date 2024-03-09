@@ -12,7 +12,8 @@
         height: $p-20; /* Adjust size as needed */
         border-radius: 50%; /* Makes the button circular */
         border: none;
-        background-color: #007bff; /* Button background color */
+        background: linear-gradient(to right, #8be318, #c5ff33);
+        // background-color: ; /* Button background color */
         color: white; /* Button text color */
         font-size: 20px; /* Adjust font size as needed */
         cursor: pointer;
@@ -21,7 +22,7 @@
         align-items: center;
     
         &:hover {
-            background-color: #0056b3;
+            background: linear-gradient(to right, #e03d58, #d73fbe);
         }
         @include tablet-and-desk {
             width: $p-36;
