@@ -18,8 +18,34 @@
             justify-content: space-between;
         }
     }
+    &__done{
+        display: flex;
+        justify-content: space-around;
+    }
 }
 
 .details {
     color: $labelBlue;
+}
+
+label {
+  position: relative;
+}
+
+/* Style for the "Done" text */
+span.hovered {
+  display: none; /* Initially hide the text */
+  position: absolute;
+  top: 25%; /* Position below the checkbox */
+  left: 10;
+  background-color: green;
+  color: white;
+  padding: 5px;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+/* Show the text when hovering over the label */
+label:hover span.hovered {
+  display: inline-block;
 }

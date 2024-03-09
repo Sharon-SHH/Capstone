@@ -9,6 +9,13 @@
             background-color: $darkblue;
         }
     }
+    &__Icon {
+        height:2rem;
+        vertical-align: middle;
+        @include tablet-and-desk{
+            height: 2.5rem;
+        }
+    }
     &__inputCity{
        display: flex;
        flex-direction: column;

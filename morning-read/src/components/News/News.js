@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./News.scss";
 import axios from "axios";
+import newsIcon from "../../assets/images/Icons/news-64.png";
 import NewsItem from "../NewsItem/NewsItem";
 import SpecificNews from "../SpecificNews/SpecificNews";
 
@@ -16,30 +17,13 @@ const News = ()=> {
   };
 
   useEffect(() => {
-    // Function to remove duplicated objects based on specific attributes
-    const removeDuplicates = (list) => {
-      const seen = new Set();
-      return list.filter((obj) => {
-        const keyA = obj.titel;
-        const keyB = obj.source && obj.source.uri; // Access nested attribute B.title
-        const keyC = obj.sentiment;
-        const compositeKey = `${keyA}|${keyB}&${keyC}`;
-        if (seen.has(compositeKey)) {
-          return false; // Skip this object if it's a duplicate
-        } else {
-          seen.add(compositeKey);
-          return true; // Keep this object if it's not a duplicate
-        }
-      });
-    };
-
     const fetchData = async () => {
       const response = await axios.get(`${baseUrl}/news`);
       const tmpList = response.data?.articles?.results;
       // get specific news: filter related news, remove duplicated news
       const filterList = tmpList.filter(
         (item, index, self) =>
-          item.sentiment > 0.5 &&
+          item.sentiment >= 0.40 &&
           index === self.findIndex((t) => t.title === item.title)
       );
 
@@ -76,7 +60,10 @@ const News = ()=> {
 
   return (
     <form className="news" onSubmit={handleSubmit}>
-      <h3>Today's News:</h3>
+      <h3>
+        Today's News:{" "}
+        <img className="news__icon" src={newsIcon} alt="taskIcon" />
+      </h3>
       <section className="specific">
         <div className="specific__wrapper">
           {specificNewsList && specificNewsList.length > 0 ? (

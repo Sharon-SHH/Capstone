@@ -3,25 +3,33 @@ import axios from "axios";
 import "./Weather.scss";
 const baseUrl = process.env.REACT_APP_SERVER_URL;
 
-const Weather = ({ selectCity}) => {
+const Weather = ({ selectCity }) => {
   const [weather, setWeather] = useState({});
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const fetchData = async (param_city) => {
-    const encodedCity = encodeURIComponent(param_city);
-    const response = await axios.get(
-      `${baseUrl}/weather?search=${encodedCity}`
-    );
-    setWeather(response.data);
-  }
+    try {
+      const encodedCity = encodeURIComponent(param_city);
+      const response = await axios.get(
+        `${baseUrl}/weather?search=${encodedCity}`
+      );
+      setWeather(response.data);
+      setErrorMessage(null);
+    } catch (error) {
+      setErrorMessage(error.error); 
+      console.error(error.error);
+    }
+  };
 
   useEffect(() => {
-    if (selectCity) {
-      fetchData(selectCity);
-    }
+    fetchData(selectCity);
   }, [selectCity]);
+
   return (
     <div className="weather">
-      {weather && weather.weather ? (
+      {errorMessage ? (
+        <div>Error: no available data</div>
+      ) : weather && weather.weather ? (
         <div>
           <h3>
             Today's weather:{" "}
@@ -49,7 +57,7 @@ const Weather = ({ selectCity}) => {
           </div>
         </div>
       ) : (
-        <p>No data</p>
+        <p>Loading</p>
       )}
     </div>
   );
