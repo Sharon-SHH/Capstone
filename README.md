@@ -1,6 +1,6 @@
 # Morning Read App
 
-On **server** branch, it's the backend code from another repo.
+<span style="color:red"> On **server** branch, it's the backend code from another repo.</span>
 ## Overview
 
 The Morning Read App is designed to provide users with a centralized platform to gather important information for starting their day. The app will feature modules for displaying weather forecasts, task lists, and top news headlines, allowing users to efficiently access key information in one place.
