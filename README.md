@@ -67,7 +67,7 @@ List the functionality that your app will include. These can be written as user 
 
 ### Mockups
 
-![demo](./img/demo.png)
+![demo](./img/Newdemo.png)
 
 ### Data
 

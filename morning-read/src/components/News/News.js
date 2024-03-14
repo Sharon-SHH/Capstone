@@ -23,7 +23,7 @@ const News = ()=> {
       // get specific news: filter related news, remove duplicated news
       const filterList = tmpList.filter(
         (item, index, self) =>
-          item.sentiment >= 0.40 &&
+          item.sentiment >= 0.50 &&
           index === self.findIndex((t) => t.title === item.title)
       );
 

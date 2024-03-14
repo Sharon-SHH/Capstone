@@ -29,6 +29,14 @@
             height: $p-36;
         }
     }
+    &__content {
+        line-height: $p-24;
+        font-size: $p-20;
+        @include tablet-and-desk {
+            line-height: $p-28;
+            font-size: $p-20;
+        }
+    }
 }
 a {
     text-decoration-line: none;

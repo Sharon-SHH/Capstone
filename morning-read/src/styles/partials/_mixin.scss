@@ -25,14 +25,14 @@
 }
 
 @mixin section-header {
-    font-size: $p-16;
+    font-size: $p-22;
     line-height: $p-22;
     font-family: "Avenir", Arial, Helvetica, sans-serif;
     font-weight: 700;
 
     @include tablet-and-desk{
-        font-size: $p-20;
-        line-height: $p-18;
+        font-size: $p-28;
+        line-height: $p-32;
     }
 }
 

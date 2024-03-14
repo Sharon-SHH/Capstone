@@ -9,13 +9,13 @@ const SpecificNews = ({specificItem}) => {
   };
   return (
     <div className="spNews">
-      <h4>
+      <h3>
         <a href={specificItem.url}><strong>{specificItem.title}</strong></a>
-      </h4>
+      </h3>
 
       {" from "}
       <span className="details">{specificItem?.source?.uri}</span>
-      <p>
+      <p className="spNews__content">
         {showAll ? specificItem.body : `${specificItem.body.slice(0, 500)}...`}
       </p>
       <div className="spNews__wrapper">
